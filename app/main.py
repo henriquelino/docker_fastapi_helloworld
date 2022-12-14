@@ -1,14 +1,12 @@
 from fastapi import FastAPI
 from fastapi.staticfiles import StaticFiles
-from .routes import items
-from .utils import ROOT
+from .routes import items, index
+from .utils import BASE_DIR
 
 app = FastAPI()
 
+app.mount("/static", StaticFiles(directory=BASE_DIR / "static"), name="static")
+
+
 app.include_router(items.router)
-app.mount("/static", StaticFiles(directory=f"{ROOT}/static"), name="static")
-
-
-@app.get("/")
-def read_root():
-    return {"Hello": "World"}
+app.include_router(index.router)

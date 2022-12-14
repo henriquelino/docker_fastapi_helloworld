@@ -3,11 +3,11 @@ import logging
 from fastapi import APIRouter, Request
 from fastapi.responses import HTMLResponse
 from fastapi.templating import Jinja2Templates
-from ..utils import ROOT
+from ..utils import BASE_DIR
 
-router = APIRouter(prefix='', tags=["callback pages"])
+router = APIRouter(prefix='', tags=["Items pages"])
 
-templates = Jinja2Templates(directory=f'{ROOT}/templates')
+templates = Jinja2Templates(directory=BASE_DIR / 'templates')
 
 logger = logging.getLogger(__name__)
 
